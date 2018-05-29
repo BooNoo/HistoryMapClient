@@ -19,17 +19,17 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getFoods();
+        // this.getFoods();
     }
 
-    getFoods() {
-        this._demoService.getFoods().subscribe(
-            data => {
-                this.foods = data;
-            },
-            err => console.error(err),
-            () => console.log('done loading foods')
-        );
-    }
+    // getFoods() {
+    //     this._demoService.getFoods().subscribe(
+    //         data => {
+    //             this.foods = data;
+    //         },
+    //         err => console.error(err),
+    //         () => console.log('done loading foods')
+    //     );
+    // }
 
 }
