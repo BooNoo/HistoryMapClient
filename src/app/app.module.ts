@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {AppComponent} from './app.component';
 import {
     MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatSidenavModule, MatToolbarModule, MatIconModule,
@@ -22,6 +22,7 @@ import {AppRoutingModule} from './app-routing.module';
 import { MapComponent } from './map/map.component';
 import { PointObjectComponent } from './point-object/point-object.component';
 import {RoleGuard} from './_guards/role.guard';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
     exports: [
@@ -58,8 +59,7 @@ import {RoleGuard} from './_guards/role.guard';
         MatToolbarModule,
         MatTooltipModule,
         MatFormFieldModule
-    ],
-    declarations: [MapComponent, PointObjectComponent]
+    ]
 })
 export class MaterialModule {}
 
@@ -70,6 +70,8 @@ export class MaterialModule {}
         SignupComponent,
         UserComponent,
         DashboardComponent,
+        MapComponent,
+        PointObjectComponent
     ],
     imports: [
         BrowserAnimationsModule,
@@ -79,7 +81,11 @@ export class MaterialModule {}
         AppRoutingModule,
         FlexLayoutModule,
         MaterialModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyBLPpTOkgE6x5LVANQErVGl2eynrFV598Y'
+        }),
+        MapComponent
     ],
     providers: [
         DataService,
@@ -92,7 +98,8 @@ export class MaterialModule {}
     ],
     entryComponents: [
         DashboardComponent
-    ]
+    ],
+    schemas:  [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule {
 }

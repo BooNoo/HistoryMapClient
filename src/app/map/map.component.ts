@@ -1,15 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, NgModule, OnInit, ViewChild} from '@angular/core';
+import {AgmCoreModule, AgmMap} from '@agm/core';
+
+
+@NgModule({
+    imports: [
+        AgmCoreModule
+    ],
+})
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+    selector: 'app-map',
+    templateUrl: './map.component.html',
+    styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
 
-  constructor() { }
+    @ViewChild(AgmMap)
+    public agmMap: AgmMap;
 
-  ngOnInit() {
-  }
+    lat: number = 43.114014;
+    lng: number = 131.899843;
+
+    constructor() {
+    }
+
+    ngOnInit() {
+        this.agmMap.triggerResize();
+    }
 
 }

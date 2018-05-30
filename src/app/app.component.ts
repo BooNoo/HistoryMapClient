@@ -13,23 +13,14 @@ const httpOptions = {
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-    public foods;
 
-    constructor(private _demoService: DataService) {
+    lat: number = 51.678418;
+    lng: number = 7.809007;
+
+    constructor() {
     }
 
     ngOnInit() {
-        // this.getFoods();
     }
-
-    // getFoods() {
-    //     this._demoService.getFoods().subscribe(
-    //         data => {
-    //             this.foods = data;
-    //         },
-    //         err => console.error(err),
-    //         () => console.log('done loading foods')
-    //     );
-    // }
 
 }

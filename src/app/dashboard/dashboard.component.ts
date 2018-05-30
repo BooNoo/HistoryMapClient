@@ -76,6 +76,7 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.navigation = this.userMenu;
         let role = localStorage.getItem('userRole');
         if (role) {
             console.log(role);
