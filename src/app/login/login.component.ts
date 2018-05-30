@@ -23,9 +23,10 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
-        this.http.post('http://localhost:3003/signin', this.loginData).subscribe(resp => {
+        this.http.post('http://192.168.0.105:3003/signin', this.loginData).subscribe(resp => {
             this.data = resp;
             localStorage.setItem('jwtToken', 'bearer ' + this.data.token);
+            localStorage.setItem('userRole', this.data.role);
             this.router.navigate(['dashboard']);
         }, err => {
             this.message = err.error.msg;

@@ -1,0 +1,44 @@
+.container {
+    position: absolute;
+    top: 60px;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+}
+
+.sidenav {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    width: 200px;
+    .nav-buttons {
+        margin-top: 16px;
+        .button {
+            margin-top: 8px;
+            width: 180px;
+            .icon {
+                position: absolute;
+                top: 5px;
+                left: 10px;
+            }
+        }
+    }
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    .options {
+        position: absolute;
+        right: 0px;
+    }
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
