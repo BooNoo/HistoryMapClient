@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import {tap, catchError} from 'rxjs/operators';
-import {of} from 'rxjs/observable/of';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-user',
@@ -21,7 +19,7 @@ export class UserComponent implements OnInit {
         let httpOptions = {
             headers: new HttpHeaders({'Authorization': localStorage.getItem('jwtToken')})
         };
-        this.http.get('http://localhost:3003/user/all', httpOptions).subscribe(data => {
+        this.http.get(environment.apiUrl + 'user/all', httpOptions).subscribe(data => {
             this.users = data;
         }, err => {
             if (err.status === 401) {

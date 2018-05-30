@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Router} from "@angular/router";
-import {Observable} from 'rxjs/Observable';
-import {tap, catchError} from 'rxjs/operators';
-import {of} from 'rxjs/observable/of';
+import {Router} from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
     selector: 'app-signup',
@@ -23,7 +21,7 @@ export class SignupComponent implements OnInit {
     }
 
     signup() {
-        this.http.post('http://localhost:3003/signup', this.signupData).subscribe(resp => {
+        this.http.post( environment.apiUrl + 'signup', this.signupData).subscribe(resp => {
             this.response = resp;
             if (this.response.error) {
                 this.message = this.response.message

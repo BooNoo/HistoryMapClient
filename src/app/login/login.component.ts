@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Router} from "@angular/router";
-import {Observable} from 'rxjs/Observable';
-import {tap, catchError} from 'rxjs/operators';
-import {of} from 'rxjs/observable/of';
+import {Router} from '@angular/router';
+import {environment} from '../../environments/environment';
 
 @Component({
     selector: 'app-login',
@@ -12,18 +10,19 @@ import {of} from 'rxjs/observable/of';
 })
 export class LoginComponent implements OnInit {
 
-    loginData = {email: "", password: ""};
-    message = "";
+    envUrl = environment.apiUrl;
+    loginData = {email: '', password: ''};
+    message = '';
     data: any;
+
     constructor(private http: HttpClient, private router: Router) {
     }
 
     ngOnInit() {
-        // this.logout()
     }
 
     login() {
-        this.http.post('http://192.168.0.105:3003/signin', this.loginData).subscribe(resp => {
+        this.http.post(environment.apiUrl + 'signin', this.loginData).subscribe(resp => {
             this.data = resp;
             localStorage.setItem('jwtToken', 'bearer ' + this.data.token);
             localStorage.setItem('userRole', this.data.role);
