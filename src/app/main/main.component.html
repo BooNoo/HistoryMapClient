@@ -18,7 +18,7 @@
 
         <div class="nav-buttons" fxLayout="column" fxLayoutAlign="start center">
             <div *ngFor="let item of navigation">
-                <button class="button" mat-raised-button color="primary" routerLink="/dashboard/{{item.url}}">
+                <button class="button" mat-raised-button color="primary" routerLink="/{{item.url}}">
                     <mat-icon class="icon">{{item.icon}}</mat-icon>
                     {{item.title}}
                 </button>
@@ -28,6 +28,6 @@
     </mat-sidenav>
 
     <mat-sidenav-content [formGroup]="options">
-        <router-outlet></router-outlet>
+        <app-content></app-content>
     </mat-sidenav-content>
 </mat-sidenav-container>

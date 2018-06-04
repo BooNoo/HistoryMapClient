@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
     selector: 'app-signup',
@@ -26,7 +26,7 @@ export class SignupComponent implements OnInit {
             if (this.response.error) {
                 this.message = this.response.message
             } else {
-                this.router.navigate(["login"]);
+                this.router.navigate(['login']);
             }
         }, err => {
             this.message = err.error.msg;

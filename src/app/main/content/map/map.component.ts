@@ -1,7 +1,6 @@
 import {Component, NgModule, OnInit, ViewChild} from '@angular/core';
 import {AgmCoreModule, AgmMap} from '@agm/core';
 
-
 @NgModule({
     imports: [
         AgmCoreModule
