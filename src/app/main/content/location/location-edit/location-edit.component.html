@@ -1,0 +1,9 @@
+<page-simple-header [description]="'Редактировать локацию'" [link]="['/location-list']"></page-simple-header>
+<location-form [form]="locationForm"></location-form>
+
+<div fxLayout="row" fxLayoutAlign="end center">
+    <button [matTooltip]="'Сохранить'" matTooltipPosition="right" matTooltipDisabled="false" mat-fab color="primary"
+            [disabled]="!locationForm.valid" (click)="save()">
+        <mat-icon>save</mat-icon>
+    </button>
+</div>

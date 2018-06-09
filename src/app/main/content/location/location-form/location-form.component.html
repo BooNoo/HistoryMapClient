@@ -1,0 +1,36 @@
+<form [formGroup]="form" class="form">
+    <div fxLayout="column" fxLayoutAlign="space-between stretch">
+        <mat-card fxFlex>
+            <mat-card-title>
+                Редактирование локации
+            </mat-card-title>
+            <mat-card-content>
+                <div class="row form-group">
+                    <mat-form-field>
+                        <input type="text" formControlName="name" matInput placeholder="Название"
+                               class="form-control"/>
+                    </mat-form-field>
+                    <!--<error-label [errors]="error('name')"></error-label>-->
+                </div>
+
+                <div class="row form-group">
+                    <mat-form-field>
+                        <input type="text" formControlName="code" matInput
+                               placeholder="Код"
+                               class="form-control"/>
+                    </mat-form-field>
+                    <!--<error-label [errors]="error('shortDescription')"></error-label>-->
+                </div>
+
+            </mat-card-content>
+        </mat-card>
+
+
+        <agm-map [latitude]="form.value.latitude" [longitude]="form.value.longitude" [zoom]="mapZoom"
+                 (mapClick)="mapClicked($event)">
+            <agm-marker [latitude]="form.value.latitude" [longitude]="form.value.longitude"></agm-marker>
+        </agm-map>
+    </div>
+    {{form.value | json}}
+</form>
+
