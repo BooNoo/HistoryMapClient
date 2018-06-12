@@ -24,31 +24,32 @@ export class MapObjectsListComponent implements OnInit {
     upload(event) {
 
 
-        const file = event.target.files[0];
-        const filePath = 'test';
-        const fileRef = this.afStorage.ref(filePath);
-        const task = this.afStorage.upload(filePath, file);
+        // let file = event.target.files[0];
+        // let filePath = Math.random().toString(36).substring(2);
+        // let task = this.afStorage.upload(filePath, file).then(() => {
+        //     let fileRef = this.afStorage.ref(filePath);
+        //     fileRef.getDownloadURL().subscribe(url => {
+        //         console.log(url)
+        //     })
+        // });
+        // this.uploadProgress = task.percentageChanges();
 
-        this.uploadProgress = task.percentageChanges();
-        // get notified when the download URL is available
-        // this.downloadURL = fileRef.getDownloadURL()
-        // fileRef.getDownloadURL().subscribe(ref => {
-        //     console.log('REF', ref);
-        //     // this.downloadURL = ref
-        // })
-
-        task.snapshotChanges().pipe(
-            finalize(() => this.downloadURL = this.afStorage.ref(filePath).getDownloadURL())
-        )
-            .subscribe();
-
-        console.log(this.downloadURL);
 
         // this.downloadURL = fileRef.getDownloadURL();
 
-        // const id = Math.random().toString(36).substring(2);
-        // this.ref = this.afStorage.ref(id);
-        // this.task = this.ref.put(event.target.files[0]);
+        const id = Math.random().toString(36).substring(2);
+        this.ref = this.afStorage.ref(id);
+        this.task = this.ref.put(event.target.files[0]);
+
+
+        this.uploadProgress = this.task.percentageChanges();
+
+        this.task.snapshotChanges().pipe(
+            finalize(() => this.downloadURL = this.afStorage.ref(id).getDownloadURL())
+        )
+            .subscribe();
+        // this.task.downloadURL().subscribe(x => console.log(x));
+
 
         // this.ref.getDownloadURL().subscribe(ref => {
         //     console.log('REF', ref);

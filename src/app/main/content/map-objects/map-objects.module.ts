@@ -5,11 +5,15 @@ import {MapObjectsListComponent} from './map-objects-list/map-objects-list.compo
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import {MatProgressBarModule} from '@angular/material';
+import {RoleGuard} from '../../../_guards/role.guard';
+import {AuthGuard} from '../../../_guards/auth.guard';
 
 const routes = [
     {
         path: 'map-objects-list',
-        component: MapObjectsListComponent
+        component: MapObjectsListComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        data: {role: 'admin'}
     },
 ];
 
