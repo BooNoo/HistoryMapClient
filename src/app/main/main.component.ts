@@ -25,19 +25,19 @@ export class MainComponent implements OnInit {
             type: 'item',
             icon: 'group',
         },
-        // {
-        //     id: 'point-object',
-        //     title: 'Объекты',
-        //     url: '/point-object',
-        //     type: 'item',
-        //     icon: 'place',
-        // },
         {
             id: 'location-list',
             title: 'Локации',
             url: '/location-list',
             type: 'item',
             icon: 'place',
+        },
+        {
+            id: 'map-objects-list',
+            title: 'Объекты карты',
+            url: '/map-objects-list',
+            type: 'item',
+            icon: 'place'
         }
     ];
 
