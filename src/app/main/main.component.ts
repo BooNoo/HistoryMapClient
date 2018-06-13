@@ -33,6 +33,13 @@ export class MainComponent implements OnInit {
             icon: 'place',
         },
         {
+            id: 'location-type-list',
+            title: 'Типы локации',
+            url: '/location-type-list',
+            type: 'item',
+            icon: 'place',
+        },
+        {
             id: 'map-objects-list',
             title: 'Объекты карты',
             url: '/map-objects-list',

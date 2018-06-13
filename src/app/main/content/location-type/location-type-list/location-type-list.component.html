@@ -1,0 +1,46 @@
+<page-simple-header [description]="'Типы локаций'"></page-simple-header>
+
+<div fxLayout="row" fxLayoutAlign="end center" class="table-action">
+    <button mat-icon-button [disabled]="selection.selected.length > 1 || selection.selected.length == 0 "
+            (click)="deleteLocation()">
+        <mat-icon>delete_sweep</mat-icon>
+    </button>
+    <button mat-icon-button [disabled]="selection.selected.length > 1 || selection.selected.length == 0 "
+            (click)="editLocation()">
+        <mat-icon>create</mat-icon>
+    </button>
+    <button mat-icon-button routerLink="/location-type-list/add">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+
+<mat-table #table [dataSource]="dataSource" class="locations">
+
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+        </mat-cell>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Название</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"
+             (click)="selection.toggle(row)">
+    </mat-row>
+</mat-table>

@@ -1,12 +1,12 @@
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
-import {NgModule} from '@angular/core';
 import {MapObjectsListComponent} from './map-objects-list/map-objects-list.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import {MatProgressBarModule} from '@angular/material';
 import {RoleGuard} from '../../../_guards/role.guard';
 import {AuthGuard} from '../../../_guards/auth.guard';
+import {NgModule} from '@angular/core';
 
 const routes = [
     {

@@ -3,7 +3,6 @@ import {LocationListComponent} from './location-list/location-list.component';
 import {RoleGuard} from '../../../_guards/role.guard';
 import {AuthGuard} from '../../../_guards/auth.guard';
 import {RouterModule} from '@angular/router';
-import {CommonModule} from '@angular/common';
 import {LocationService} from '../../../../api/services/location.service';
 import {
     MatAutocompleteModule,
@@ -51,6 +50,7 @@ import { LocationAddComponent } from './location-add/location-add.component';
 import {LocationFormComponent, LocationFormService} from './location-form/location-form.component';
 import {FormModule} from '../../components/form-component/form-component.module';
 import { LocationEditComponent } from './location-edit/location-edit.component';
+import {CommonModule} from '@angular/common';
 
 const routes = [
     {
@@ -81,7 +81,6 @@ const routes = [
             apiKey: 'AIzaSyBLPpTOkgE6x5LVANQErVGl2eynrFV598Y'
         }),
         CommonModule,
-        MatTableModule,
         FormModule,
 
         BrowserModule,
