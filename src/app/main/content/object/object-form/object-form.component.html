@@ -1,0 +1,33 @@
+<form [formGroup]="form" class="form">
+    <div fxLayout="column" fxLayoutAlign="space-between stretch">
+        <mat-card fxFlex>
+            <mat-card-title>
+                Редактирование объекта карты
+            </mat-card-title>
+            <mat-card-content>
+                <div class="row form-group">
+                    <mat-form-field>
+                        <input type="text" formControlName="name" matInput placeholder="Название"
+                               class="form-control"/>
+                    </mat-form-field>
+
+                    <!--<mat-form-field>-->
+                        <!--<input type="text" formControlName="fk_typeid" matInput placeholder="Тип локации"-->
+                               <!--class="form-control"/>-->
+                    <!--</mat-form-field>-->
+                    <!--&lt;!&ndash;<error-label [errors]="error('name')"></error-label>&ndash;&gt;-->
+
+                    <mat-form-field>
+                        <mat-select formControlName="fk_typeid" placeholder="Тип объекта">
+                            <mat-option *ngFor="let type of (locationType | async)" [value]="type.id">
+                                {{type.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+</form>
+

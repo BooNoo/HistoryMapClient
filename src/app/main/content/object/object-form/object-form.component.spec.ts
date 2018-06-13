@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MapObjectsListComponent } from './map-objects-list.component';
+import { ObjectFormComponent } from './object-form.component';
 
-describe('MapObjectsListComponent', () => {
-  let component: MapObjectsListComponent;
-  let fixture: ComponentFixture<MapObjectsListComponent>;
+describe('ObjectFormComponent', () => {
+  let component: ObjectFormComponent;
+  let fixture: ComponentFixture<ObjectFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MapObjectsListComponent ]
+      declarations: [ ObjectFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MapObjectsListComponent);
+    fixture = TestBed.createComponent(ObjectFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

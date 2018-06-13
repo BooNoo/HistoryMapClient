@@ -25,7 +25,7 @@ export class LocationTypeListComponent implements OnInit {
         this.locationTypeService.getLocationTypes().subscribe(x => this.dataSource = new MatTableDataSource(x));
     }
 
-    deleteLocation() {
+    deleteLocationType() {
         this.locationTypeService.deleteLocationType(this.selection.selected[0]).subscribe((response: IServerResponse) => {
             if (!response.error) {
                 this.selection.clear();
@@ -34,7 +34,7 @@ export class LocationTypeListComponent implements OnInit {
         })
     }
 
-    editLocation() {
+    editLocationType() {
         this.router.navigate(['location-type/edit/' + this.selection.selected[0].id])
     }
 

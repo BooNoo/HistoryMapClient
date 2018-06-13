@@ -1,23 +1,46 @@
-<page-simple-header [description]="'Типы локаций'"></page-simple-header>
+<!--<div class="container">-->
+    <!--<div class="card">-->
+        <!--<div class="card-header">-->
+            <!--Firebase Cloud Storage & Angular 5-->
+        <!--</div>-->
+        <!--<div class="card-body">-->
+            <!--<h5 class="card-title">Select a file for upload:</h5>-->
+            <!--<input type="file" (change)="upload($event)" accept=".png,.jpg" />-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<!--<mat-progress-bar mode="determinate" [value]="(uploadProgress | async)"></mat-progress-bar>-->
+
+<!--&lt;!&ndash;<div class="progress">&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--<div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">-->
+    <!--File uploaded: <a [href]="downloadSrc">{{downloadSrc}}</a>-->
+<!--</div>-->
+
+<!--{{downloadURL | async}}-->
+
+
+<page-simple-header [description]="'Объекты карты'"></page-simple-header>
 
 <div fxLayout="row" fxLayoutAlign="end center" class="table-action">
     <button mat-icon-button [disabled]="selection.selected.length > 1 || selection.selected.length == 0 "
-            (click)="deleteLocationType()">
+            (click)="deleteObject()">
         <mat-icon>delete_sweep</mat-icon>
     </button>
     <button mat-icon-button [disabled]="selection.selected.length > 1 || selection.selected.length == 0 "
-            (click)="editLocationType()">
+            (click)="editObject()">
         <mat-icon>create</mat-icon>
     </button>
-    <button mat-icon-button routerLink="/location-type-list/add">
+    <button mat-icon-button routerLink="/object-list/add">
         <mat-icon>add</mat-icon>
     </button>
 </div>
 
 <mat-table #table [dataSource]="dataSource" class="locations">
 
-
-    <!-- Checkbox Column -->
     <ng-container matColumnDef="select">
         <mat-header-cell *matHeaderCellDef>
             <mat-checkbox (change)="$event ? masterToggle() : null"
@@ -33,10 +56,14 @@
         </mat-cell>
     </ng-container>
 
-    <!-- Position Column -->
     <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Название</mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+        <mat-header-cell *matHeaderCellDef> Тип</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{getLocationType(element.fk_typeid)}}</mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

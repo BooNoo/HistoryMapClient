@@ -40,9 +40,9 @@ export class MainComponent implements OnInit {
             icon: 'place',
         },
         {
-            id: 'map-objects-list',
+            id: 'object-list',
             title: 'Объекты карты',
-            url: '/map-objects-list',
+            url: '/object-list',
             type: 'item',
             icon: 'place'
         }

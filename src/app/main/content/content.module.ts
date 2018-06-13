@@ -5,7 +5,7 @@ import {RouterModule} from '@angular/router';
 import {AuthenticationModule} from './authentication/authentication.module';
 import {UserModule} from './user/user.module';
 import {LocationModule} from './location/location.module';
-import {MapObjectsModule} from './map-objects/map-objects.module';
+import {ObjectsModule} from './object/object.module';
 import {LocationTypeModule} from './location-type/location-type.module';
 
 @NgModule({
@@ -18,7 +18,7 @@ import {LocationTypeModule} from './location-type/location-type.module';
         MapModule,
         UserModule,
         LocationModule,
-        MapObjectsModule,
+        ObjectsModule,
         LocationTypeModule
     ],
     providers: [],

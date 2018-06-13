@@ -1,0 +1,9 @@
+<page-simple-header [description]="'Добавить объект карты'" [link]="['/object-list']"></page-simple-header>
+<object-form [form]="objectForm"></object-form>
+
+<div fxLayout="row" fxLayoutAlign="end center">
+    <button [matTooltip]="'Сохранить'" matTooltipPosition="right" matTooltipDisabled="false" mat-fab color="primary"
+            [disabled]="!objectForm.valid" (click)="save()">
+        <mat-icon>save</mat-icon>
+    </button>
+</div>
