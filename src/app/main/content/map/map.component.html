@@ -1,3 +1,26 @@
-<agm-map [latitude]="lat" [longitude]="lng" [zoom]="15">
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-</agm-map>
+<div class="main-map" fxLayout="row" fxLayoutAlign="start stretch">
+    <div fxFlex class="map-view">
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="5" >
+            <ng-container *ngFor="let object of (objects | async)">
+                <ng-container *ngIf="object.location && !object.latitude">
+                    <agm-marker [latitude]="object.location.latitude"
+                                [longitude]="object.location.longitude"></agm-marker>
+                </ng-container>
+                <ng-container *ngIf="object.latitude && object.longitude">
+                    <agm-marker (markerClick)="mapClick(object)" [latitude]="object.latitude"
+                                [longitude]="object.longitude"></agm-marker>
+                </ng-container>
+            </ng-container>
+        </agm-map>
+    </div>
+
+
+    <div fxFlex="30" *ngIf="selectedObject">
+        <button mat-raised-button color="primary" (click)="clearSelectedObject()">
+            <mat-icon class="icon" >close</mat-icon>
+        </button>
+        <!--{{selectedObject | json}}-->
+        <object-view [object]="selectedObject"></object-view>
+    </div>
+
+</div>

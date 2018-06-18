@@ -4,7 +4,7 @@
     </button>
     <h1 class="app-name">История переселенцев</h1>
 
-    <button mat-button [matMenuTriggerFor]="menu" class="options">Options</button>
+    <button mat-button [matMenuTriggerFor]="menu" class="options">Опции</button>
     <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="logout()">Logout</button>
     </mat-menu>
@@ -24,9 +24,7 @@
                 </button>
             </div>
         </div>
-
     </mat-sidenav>
-
     <mat-sidenav-content [formGroup]="options">
         <app-content></app-content>
     </mat-sidenav-content>

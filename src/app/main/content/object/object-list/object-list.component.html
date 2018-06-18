@@ -66,8 +66,24 @@
         <mat-cell *matCellDef="let element"> {{getLocationType(element.fk_typeid)}}</mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="coordinate">
+        <mat-header-cell *matHeaderCellDef>
+            Координаты
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+            <button *ngIf="element.location != null || element.latitude" mat-icon-button>
+                <mat-icon (click)="setLocationOnMap(element)">explore</mat-icon>
+            </button>
+
+        </mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"
              (click)="selection.toggle(row)">
     </mat-row>
 </mat-table>
+
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="10">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map>

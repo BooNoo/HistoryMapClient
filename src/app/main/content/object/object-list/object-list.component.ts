@@ -22,9 +22,11 @@ export class MapObjectsListComponent implements OnInit {
     // task: AngularFireUploadTask;
     // uploadProgress: Observable<number>;
     // downloadURL: Observable<string>;
+    lat: number = 43.115068;
+    lng: number = 131.906059;
     dataSource;
     locationType: ILocationType[];
-    displayedColumns = ['select', 'name', 'type'];
+    displayedColumns = ['select', 'name', 'type', 'coordinate'];
     selection = new SelectionModel<IObject>(true, []);
 
     constructor(private afStorage: AngularFireStorage,
@@ -33,31 +35,34 @@ export class MapObjectsListComponent implements OnInit {
                 private router: Router) {
     }
 
-    ngOnInit() {
+    async ngOnInit() {
         this.objectService.getObjects().subscribe(x => this.dataSource = new MatTableDataSource(x));
-        this.locationTypeService.getLocationTypes().subscribe(x => this.locationType = x);
+        await this.locationTypeService.getLocationTypes().subscribe(x => this.locationType = x);
     }
 
     deleteObject() {
         this.objectService.deleteObject(this.selection.selected[0]).subscribe((response: IServerResponse) => {
             if (!response.error) {
                 this.selection.clear();
-                this.ngOnInit()
+                this.ngOnInit();
             }
-        })
+        });
     }
 
     getLocationType(id: number): string {
-        let type = this.locationType.find(x => x.id == id);
-        if (!type) {
-            return '~'
-        } else {
-            return type.name
+        if (this.locationType) {
+            let type = this.locationType.find(x => x.id == id);
+            if (!type) {
+                return '~';
+            } else {
+                return type.name;
+            }
         }
+        return '~';
     }
 
     editObject() {
-        this.router.navigate(['object-list/edit/' + this.selection.selected[0].id])
+        this.router.navigate(['object-list/edit/' + this.selection.selected[0].id]);
     }
 
     isAllSelected() {
@@ -70,6 +75,16 @@ export class MapObjectsListComponent implements OnInit {
         this.isAllSelected() ?
             this.selection.clear() :
             this.dataSource.data.forEach(row => this.selection.select(row));
+    }
+
+    setLocationOnMap(object: IObject) {
+        if (object.longitude && object.latitude) {
+            this.lat = object.latitude;
+            this.lng = object.longitude;
+        } else {
+            this.lat = object.location.latitude;
+            this.lng = object.location.longitude;
+        }
     }
 
     upload(event) {

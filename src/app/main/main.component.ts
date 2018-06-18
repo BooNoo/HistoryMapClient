@@ -30,14 +30,14 @@ export class MainComponent implements OnInit {
             title: 'Локации',
             url: '/location-list',
             type: 'item',
-            icon: 'place',
+            icon: 'business',
         },
         {
             id: 'location-type-list',
             title: 'Типы локации',
             url: '/location-type-list',
             type: 'item',
-            icon: 'place',
+            icon: 'burst_mode',
         },
         {
             id: 'object-list',

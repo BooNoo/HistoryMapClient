@@ -12,22 +12,59 @@
                     </mat-form-field>
 
                     <!--<mat-form-field>-->
-                        <!--<input type="text" formControlName="fk_typeid" matInput placeholder="Тип локации"-->
-                               <!--class="form-control"/>-->
+                    <!--<input type="text" formControlName="fk_typeid" matInput placeholder="Тип локации"-->
+                    <!--class="form-control"/>-->
                     <!--</mat-form-field>-->
                     <!--&lt;!&ndash;<error-label [errors]="error('name')"></error-label>&ndash;&gt;-->
 
                     <mat-form-field>
                         <mat-select formControlName="fk_typeid" placeholder="Тип объекта">
-                            <mat-option *ngFor="let type of (locationType | async)" [value]="type.id">
+                            <mat-option *ngFor="let type of (locationTypes | async)" [value]="type.id">
                                 {{type.name}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                </div>
 
+                    <mat-form-field>
+                        <mat-select formControlName="fk_locationid" placeholder="Локация">
+                            <mat-option [value]="null">
+                                Отсутсвует
+                            </mat-option>
+                            <mat-option *ngFor="let location of (locations | async)" [value]="location.id">
+                                {{location.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
             </mat-card-content>
         </mat-card>
+
+        <mat-card fxFlex>
+            <mat-card-title>
+                Описание
+            </mat-card-title>
+            <mat-card-content>
+                <td-text-editor formControlName="information" [options]="options"></td-text-editor>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card fxFlex>
+            <mat-card-title>
+                Добавить координаты
+                <mat-slide-toggle
+                    class="example-margin"
+                    formControlName="coordinateChecked">
+                </mat-slide-toggle>
+            </mat-card-title>
+            <mat-card-content>
+
+                <agm-map *ngIf="form.value.coordinateChecked" [latitude]="43.115068" [longitude]="131.906059" [zoom]="7"
+                         (mapClick)="mapClicked($event)">
+                    <agm-marker [latitude]="form.value.latitude" [longitude]="form.value.longitude"></agm-marker>
+                </agm-map>
+            </mat-card-content>
+        </mat-card>
+
+
     </div>
 </form>
-

@@ -6,7 +6,7 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import {
     MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatFormFieldModule, MatIconModule,
     MatInputModule,
-    MatProgressBarModule, MatSelectModule, MatTableModule,
+    MatProgressBarModule, MatSelectModule, MatSlideToggleModule, MatTableModule,
     MatTooltipModule
 } from '@angular/material';
 import {RoleGuard} from '../../../_guards/role.guard';
@@ -22,9 +22,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import {ObjectFormComponent, ObjectFormService} from './object-form/object-form.component';
 import { ObjectAddComponent } from './object-add/object-add.component';
-import {LocationTypeAddComponent} from '../location-type/location-type-add/location-type-add.component';
 import { ObjectEditComponent } from './object-edit/object-edit.component';
-import {LocationTypeEditComponent} from '../location-type/location-type-edit/location-type-edit.component';
+import {AgmCoreModule} from '@agm/core';
+import {CovalentTextEditorModule} from '@covalent/text-editor';
+import { ObjectViewComponent } from './object-view/object-view.component';
 
 const routes = [
     {
@@ -53,10 +54,14 @@ const routes = [
         ObjectFormComponent,
         ObjectAddComponent,
         ObjectEditComponent,
+        ObjectViewComponent,
     ],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyBLPpTOkgE6x5LVANQErVGl2eynrFV598Y'
+        }),
         AngularFireModule.initializeApp({
             apiKey: 'AIzaSyC4vjCzqWwP-vfaijAyGaJ_fLAbgIql0jE',
             authDomain: 'historymap-1994.firebaseapp.com',
@@ -83,7 +88,12 @@ const routes = [
         MatFormFieldModule,
         MatInputModule,
         MatTooltipModule,
-        MatSelectModule
+        MatSelectModule,
+        MatSlideToggleModule,
+        CovalentTextEditorModule,
+    ],
+    exports: [
+        ObjectViewComponent
     ],
     providers: [
         ObjectService,

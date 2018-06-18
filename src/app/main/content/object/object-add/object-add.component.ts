@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 import {ObjectFormService} from '../object-form/object-form.component';
 import {ObjectService} from '../../../../../api/services/object.service';
 import {IServerResponse} from '../../../../../api/model/IServerResponse';
+import {ILocation} from '../../../../../api/model/ILocation';
 
 @Component({
     selector: 'object-add',
@@ -20,8 +21,14 @@ export class ObjectAddComponent implements OnInit {
     object: IObject = {
         id: 0,
         name: '',
+        information: '',
         fk_typeid: 0,
-        objectImages: null
+        fk_locationid: 0,
+        objectImages: null,
+        latitude: null,
+        longitude: null,
+        location: null,
+        locationType: null
     };
 
     constructor(private objectFormService: ObjectFormService,
@@ -38,7 +45,7 @@ export class ObjectAddComponent implements OnInit {
         let data = this.objectFormService.patchDataFromForm(this.object, this.objectForm.value);
         this.objectService.createObjects(data).subscribe((response: IServerResponse) => {
             if (!response.error) {
-                this.router.navigate(['/object-list'])
+                this.router.navigate(['/object-list']);
             }
         });
     }
