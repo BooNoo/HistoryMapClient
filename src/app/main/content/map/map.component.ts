@@ -25,6 +25,8 @@ export class MapComponent implements OnInit {
 
     lat: number = 43.114014;
     lng: number = 131.899843;
+    iconScale = 15;
+
 
     constructor(private objectService: ObjectService) {
     }
@@ -42,5 +44,6 @@ export class MapComponent implements OnInit {
     clearSelectedObject() {
         this.selectedObject = null;
     }
+
 
 }

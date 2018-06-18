@@ -16,7 +16,8 @@ export class LocationTypeAddComponent implements OnInit {
     locationTypeForm: FormGroup = new FormGroup({});
     locationType: ILocationType = {
         id: 0,
-        name: ''
+        name: '',
+        iconUrl: ''
     };
 
     constructor(private locationTypeFormService: LocationTypeFormService,

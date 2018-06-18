@@ -6,6 +6,7 @@ import {ILocationType} from '../../../../../api/model/ILocationType';
 export interface ILocationTypeFormView {
     id: number,
     name: string,
+    iconUrl: string
 }
 
 @Injectable()
@@ -20,20 +21,23 @@ export class LocationTypeFormService {
         return fb.group({
             id: -1,
             name: ['', [V.required, V.maxLength(100), V.minLength(2)]],
+            iconUrl: ''
         });
     };
 
     public dataToForm = (location: ILocationType): ILocationTypeFormView => {
         return {
             id: location.id,
-            name: location.name
+            name: location.name,
+            iconUrl: location.iconUrl
         };
     };
 
     public patchDataFromForm = (location: ILocationType, data: ILocationTypeFormView): ILocationType => {
         return {
             ...location,
-            name: data.name
+            name: data.name,
+            iconUrl: data.iconUrl
         };
     };
 

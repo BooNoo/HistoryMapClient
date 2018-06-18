@@ -3,6 +3,12 @@
     .map-view {
         height: 100%;
     }
+    .object-info {
+        position: absolute;
+        z-index: 10;
+        right: 8px;
+        top: 8px;
+    }
 }
 
 agm-map {

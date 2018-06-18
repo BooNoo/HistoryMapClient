@@ -1,26 +1,31 @@
 <div class="main-map" fxLayout="row" fxLayoutAlign="start stretch">
     <div fxFlex class="map-view">
-        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="5" >
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="5">
             <ng-container *ngFor="let object of (objects | async)">
                 <ng-container *ngIf="object.location && !object.latitude">
-                    <agm-marker [latitude]="object.location.latitude"
+                    <agm-marker [iconUrl]="object.locationType ? object.locationType.iconUrl : ''"
+                                [latitude]="object.location.latitude"
                                 [longitude]="object.location.longitude"></agm-marker>
                 </ng-container>
                 <ng-container *ngIf="object.latitude && object.longitude">
-                    <agm-marker (markerClick)="mapClick(object)" [latitude]="object.latitude"
-                                [longitude]="object.longitude"></agm-marker>
+                    <agm-marker
+                        [iconUrl]="object.locationType ? { url : object.locationType.iconUrl, scaledSize: { width: iconScale, height: iconScale }} : ''"
+                        (markerClick)="mapClick(object)" [latitude]="object.latitude"
+                        [longitude]="object.longitude"></agm-marker>
                 </ng-container>
             </ng-container>
         </agm-map>
     </div>
 
 
-    <div fxFlex="30" *ngIf="selectedObject">
-        <button mat-raised-button color="primary" (click)="clearSelectedObject()">
-            <mat-icon class="icon" >close</mat-icon>
-        </button>
-        <!--{{selectedObject | json}}-->
-        <object-view [object]="selectedObject"></object-view>
+    <div fxFlex="30" *ngIf="selectedObject" class="object-info">
+        <div fxLayout="column" fxLayoutAlign="center start">
+            <button mat-raised-button color="primary" (click)="clearSelectedObject()" [matTooltip]="'Закрыть'"
+                    matTooltipPosition="left" matTooltipDisabled="false">
+                <mat-icon class="icon">close</mat-icon>
+            </button>
+            <object-view [object]="selectedObject"></object-view>
+        </div>
     </div>
 
 </div>

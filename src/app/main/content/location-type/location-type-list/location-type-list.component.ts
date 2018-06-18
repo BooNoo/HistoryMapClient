@@ -5,6 +5,7 @@ import {MatTableDataSource} from '@angular/material';
 import {ILocation} from '../../../../../api/model/ILocation';
 import {SelectionModel} from '@angular/cdk/collections';
 import {IServerResponse} from '../../../../../api/model/IServerResponse';
+import {ILocationType} from '../../../../../api/model/ILocationType';
 
 @Component({
     selector: 'location-type-list',
@@ -15,7 +16,7 @@ export class LocationTypeListComponent implements OnInit {
 
     dataSource;
     displayedColumns = ['select', 'name'];
-    selection = new SelectionModel<ILocation>(true, []);
+    selection = new SelectionModel<ILocationType>(true, []);
 
     constructor(private locationTypeService: LocationTypeService,
                 private router: Router) {
