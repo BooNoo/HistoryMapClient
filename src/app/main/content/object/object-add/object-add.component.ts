@@ -25,6 +25,8 @@ export class ObjectAddComponent implements OnInit {
         fk_typeid: 0,
         fk_locationid: 0,
         objectImages: null,
+        objectAudios: null,
+        objectVideos: null,
         latitude: null,
         longitude: null,
         location: null,

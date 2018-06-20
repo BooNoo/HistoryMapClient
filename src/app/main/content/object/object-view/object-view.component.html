@@ -8,4 +8,59 @@
             <td-text-editor [value]="object.information" [options]="options" #textEditor></td-text-editor>
         </mat-card-content>
     </mat-card>
+
+    <mat-card>
+        <mat-card-title>
+            Картинки
+        </mat-card-title>
+
+        <mat-card-content>
+            <div fxLayout="row wrap" fxLayoutAlign="start none">
+                <div *ngFor="let image of (object?.objectImages)" class="image-block" >
+                    <img [src]="image.url" class="image">
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-title>
+            Видео
+        </mat-card-title>
+
+        <mat-card-content>
+            <div *ngFor="let video of object?.objectVideos; index as i" fxLayout="column"
+                 fxLayoutAlign="space-between center" class="video">
+                <iframe width="90%" height="200" [src]="getSafeUrl(video.url)" frameborder="0"
+                        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="audios">
+        <mat-card-title>
+            Аудио
+        </mat-card-title>
+
+        <mat-card-content>
+            <div fxLayout="row wrap" fxLayoutAlign="start none">
+                <mat-card fxFlex="90" class="audios" *ngFor="let audio of object?.objectAudios; index as i">
+                    <mat-card-title>
+                        {{audio.name}}
+                    </mat-card-title>
+                    <mat-card-content>
+                        <audio fxFlex="90" [src]="audio.url" controls controlsList="nodownload">
+                            Ваш браузер не поддерживает аудио сегмент
+                        </audio>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+        </mat-card-content>
+    </mat-card>
+
+
+
+
+
 </div>

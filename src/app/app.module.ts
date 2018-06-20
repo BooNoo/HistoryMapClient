@@ -37,7 +37,7 @@ export class MaterialModule {
     providers: [
         DataService,
         AuthGuard,
-        RoleGuard
+        RoleGuard,
     ],
     bootstrap: [
         AppComponent,

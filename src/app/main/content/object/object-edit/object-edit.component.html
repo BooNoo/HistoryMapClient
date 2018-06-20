@@ -1,9 +1,9 @@
 <page-simple-header [description]="'Редактировать локацию'" [link]="['/object-list']"></page-simple-header>
-<object-form [form]="objectForm"></object-form>
+<object-form [form]="objectForm" [object]="object" [isEditMode]="true"></object-form>
 
-<div fxLayout="row" fxLayoutAlign="end center">
+<div fxLayout="row" fxLayoutAlign="end center" class="safe-button">
     <button [matTooltip]="'Сохранить'" matTooltipPosition="right" matTooltipDisabled="false" mat-fab color="primary"
-            [disabled]="!objectForm.valid" (click)="save()">
+            [disabled]="!objectForm.valid" (click)="save()" >
         <mat-icon>save</mat-icon>
     </button>
 </div>

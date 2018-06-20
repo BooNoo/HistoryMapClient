@@ -65,6 +65,150 @@
             </mat-card-content>
         </mat-card>
 
+        <mat-card fxFlex *ngIf="isEditMode">
+            <mat-card-title>
+                Видео
+            </mat-card-title>
+            <mat-card-content>
+
+                <div class="videos">
+                    <div *ngFor="let video of object?.objectVideos; index as i" fxLayout="column"
+                         fxLayoutAlign="space-between center" class="video">
+                        <iframe width="90%" height="315" [src]="getSafeUrl(video.url)" frameborder="0"
+                                allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <button mat-raised-button color="primary" (click)="deleteVideo(video, i)"
+                                [matTooltip]="'Удалить'"
+                                matTooltipPosition="left" matTooltipDisabled="false" class="delete-video-button">
+                            <mat-icon class="icon">delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card *ngIf="isEditMode">
+            <mat-card-title>
+                Добавить видео
+            </mat-card-title>
+            <mat-card-content>
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-form-field fxFlex="70">
+                        <input type="text" formControlName="newVideo" matInput placeholder="Добавить видео"
+                               class="form-control"/>
+                    </mat-form-field>
+
+
+                    <button [disabled]="form.value.newVideo == ''" mat-raised-button color="primary"
+                            (click)="addVideo(form.value.newVideo)"
+                            [matTooltip]="'Добавить'"
+                            matTooltipPosition="left" matTooltipDisabled="false">
+                        <mat-icon class="icon">add</mat-icon>
+                    </button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+
+        <mat-card *ngIf="isEditMode">
+            <mat-card-title>
+                Картинки
+            </mat-card-title>
+
+            <mat-card-content>
+                <div fxLayout="row wrap" fxLayoutAlign="start none">
+                    <div *ngFor="let image of (object?.objectImages); index as i" class="image-block">
+                        <button mat-raised-button color="primary" (click)="deleteImage(image, i)"
+                                [matTooltip]="'Удалить'"
+                                matTooltipPosition="left" matTooltipDisabled="false" class="delete-image-button">
+                            <mat-icon class="icon">delete</mat-icon>
+                        </button>
+                        <img [src]="image.url" class="image">
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+
+        <mat-card *ngIf="isEditMode">
+            <mat-card-title>
+                Добавить картинки
+                <div *ngIf="currentImageUpload">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-animated"
+                             [ngStyle]="{ 'width': (currentImageUpload?.progress | async) + '%' }"></div>
+                    </div>
+                    Прогресс: {{currentImageUpload?.name}} | {{currentImageUpload?.progress | async}}%
+                </div>
+            </mat-card-title>
+
+            <mat-card-content>
+                <label>
+                    <input type="file" accept="image/*" (change)="detectImageFiles($event)" multiple>
+                </label>
+                <button
+                    [disabled]="!selectedImageFiles"
+                    (click)="uploadMultiImage()">
+                    Загрузить картинки
+                </button>
+            </mat-card-content>
+
+        </mat-card>
+
+        <mat-card class="audios" *ngIf="isEditMode">
+            <mat-card-title>
+                Аудио
+            </mat-card-title>
+            <mat-card-content>
+                <div fxLayout="row wrap" fxLayoutAlign="start none">
+                    <mat-card fxFlex="30" class="audios" *ngFor="let audio of object?.objectAudios; index as i">
+                        <mat-card-title>
+                            {{audio.name}}
+                            <button mat-raised-button color="primary" (click)="deleteAudio(audio, i)"
+                                    [matTooltip]="'Удалить'"
+                                    matTooltipPosition="left" matTooltipDisabled="false" class="delete-audio-button">
+                                <mat-icon class="icon">delete</mat-icon>
+                            </button>
+                        </mat-card-title>
+                        <mat-card-content>
+                            <audio fxFlex="30" [src]="audio.url" controls controlsList="nodownload">
+                                Ваш браузер не поддерживает аудио сегмент
+                            </audio>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </mat-card-content>
+
+        </mat-card>
+
+        <mat-card *ngIf="isEditMode">
+            <mat-card-title>
+                Добавить Аудио
+                <div *ngIf="currentAudioUpload">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-animated"
+                             [ngStyle]="{ 'width': (currentAudioUpload?.progress | async) + '%' }"></div>
+                    </div>
+                    Прогресс: {{currentAudioUpload?.name}} | {{currentAudioUpload?.progress | async}}%
+                </div>
+            </mat-card-title>
+
+            <mat-card-content>
+                <mat-form-field>
+                    <input type="text" formControlName="newAudioName" matInput placeholder="Название аудио"
+                           class="form-control"/>
+                </mat-form-field>
+                <label>
+                    <input type="file" accept="audio/*" (change)="detectAudioFiles($event)">
+                </label>
+                <button
+                    [disabled]="!selectedAudioFiles || form.value.newAudioName == ''"
+                    (click)="uploadAudio()">
+                    Загрузить аудио
+                </button>
+            </mat-card-content>
+
+        </mat-card>
+
 
     </div>
 </form>

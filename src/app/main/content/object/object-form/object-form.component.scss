@@ -4,4 +4,48 @@ agm-map {
 
 .mat-card {
     margin: 32px 32px 0px 32px;
+
+    .image-block {
+        margin-left: 16px;
+        margin-top: 16px;
+        width: 200px;
+
+        .image {
+            height: 150px;
+            width: 100%;
+            object-fit: contain;
+        }
+    }
+    .videos {
+        .video {
+            margin-top: 16px;
+            .delete-video-button {
+                position: absolute;
+                min-width: 30px;
+                line-height: 30px;
+                margin-left: 40%;
+            }
+        }
+    }
+
+    .audios {
+        margin: 8px 8px 0px 8px;
+        .delete-audio-button {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            min-width: 30px;
+            line-height: 30px;
+
+        }
+    }
+
+
+    .delete-image-button {
+        position: absolute;
+        min-width: 30px;
+        line-height: 30px;
+        margin-left: 144px;
+    }
+
 }

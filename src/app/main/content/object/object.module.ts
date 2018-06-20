@@ -4,7 +4,8 @@ import {MapObjectsListComponent} from './object-list/object-list.component';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import {
-    MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatFormFieldModule, MatIconModule,
+    MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatFormFieldModule,
+    MatIconModule,
     MatInputModule,
     MatProgressBarModule, MatSelectModule, MatSlideToggleModule, MatTableModule,
     MatTooltipModule
@@ -26,6 +27,10 @@ import { ObjectEditComponent } from './object-edit/object-edit.component';
 import {AgmCoreModule} from '@agm/core';
 import {CovalentTextEditorModule} from '@covalent/text-editor';
 import { ObjectViewComponent } from './object-view/object-view.component';
+import {UploadService} from '../../../../api/services/upload.service';
+import {ObjectImageService} from '../../../../api/services/object-image.service';
+import {ObjectVideoService} from '../../../../api/services/object-video.service';
+import {ObjectAudioService} from '../../../../api/services/object-audio.service';
 
 const routes = [
     {
@@ -89,6 +94,7 @@ const routes = [
         MatInputModule,
         MatTooltipModule,
         MatSelectModule,
+        MatChipsModule,
         MatSlideToggleModule,
         CovalentTextEditorModule,
     ],
@@ -98,6 +104,10 @@ const routes = [
     providers: [
         ObjectService,
         ObjectFormService,
+        UploadService,
+        ObjectImageService,
+        ObjectVideoService,
+        ObjectAudioService
     ],
 })
 export class ObjectsModule {

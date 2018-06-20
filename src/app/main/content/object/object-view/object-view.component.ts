@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {IObject} from '../../../../../api/model/IObject';
 import {TdTextEditorComponent} from '@covalent/text-editor';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
     selector: 'object-view',
@@ -14,17 +15,18 @@ export class ObjectViewComponent implements OnInit {
     options: any = {
         lineWrapping: true,
         toolbar: false,
+        spellChecker: false,
     };
 
-    constructor() {
+    constructor(private sanitizer: DomSanitizer) {
     }
 
     ngOnInit() {
 
     }
 
-    ngAfterViewInit(): void {
-        // this._textEditor.togglePreview();
+    getSafeUrl(url) {
+        return this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
 
 }

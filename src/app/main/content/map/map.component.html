@@ -20,10 +20,10 @@
     </div>
 
 
-    <div fxFlex="30" *ngIf="selectedObject" class="object-info">
+    <div fxFlex="40" *ngIf="selectedObject" class="object-info">
         <div fxLayout="column" fxLayoutAlign="center start">
             <button mat-raised-button color="primary" (click)="clearSelectedObject()" [matTooltip]="'Закрыть'"
-                    matTooltipPosition="left" matTooltipDisabled="false">
+                    matTooltipPosition="left" matTooltipDisabled="false" class="close-object">
                 <mat-icon class="icon">close</mat-icon>
             </button>
             <object-view [object]="selectedObject"></object-view>

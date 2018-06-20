@@ -1,0 +1,28 @@
+.object-view {
+    height: 900px;
+    overflow: auto;
+    .image-block {
+        margin-left: 16px;
+        width: 100%;
+
+        .image {
+            height: 150px;
+            width: 100%;
+            object-fit: contain;
+        }
+    }
+    .mat-card {
+        margin: 16px 16px 0px 16px;
+    }
+    .audios {
+        .mat-card {
+            margin: 8px 8px 0px 8px;
+            audio {
+                width: 80%;
+            }
+        }
+
+    }
+
+}
+
